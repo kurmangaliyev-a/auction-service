@@ -1,0 +1,18 @@
+app:
+  environment:
+    fileDirectory: D:\
+    database:
+      user: dbu_postgres
+      password: VxQ7ooGvU84P
+      url: jdbc:postgresql://localhost:5432/auction-service
+server:
+  port: 8081
+  servlet:
+    context-path: /auction
+spring:
+  datasource:
+    username: ${app.environment.database.user}
+    password: ${app.environment.database.password}
+    url: ${app.environment.database.url}
+  liquibase:
+    change-log: classpath:db/changelog/changelog.sql
