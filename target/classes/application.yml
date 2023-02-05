@@ -1,6 +1,7 @@
 app:
   environment:
-    fileDirectory: D:\
+    fileDirectory: /app/data/
+    #fileDirectory: D:\
     database:
       user: dbu_postgres
       password: VxQ7ooGvU84P

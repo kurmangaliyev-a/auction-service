@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -45,12 +46,19 @@ public class AccountController extends AbstractController {
                 .price(startPrice)
                 .duration(duration)
                 .build();
-
-        ResultMessage resultMessage = productService.createProduct(productRequest, userId, files);
+        ResultMessage resultMessage;
+        try {
+            resultMessage = productService.createProduct(productRequest, userId, files);
+        } catch (IOException e) {
+            log.warn("Ошибка загрузки файлов: {}", e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.ok(ResultMessage.failure("При загрузке, фотографии что то пошло не так!"));
+        }
         return ResponseEntity.ok(resultMessage);
     }
 
-    @GetMapping("/bid")
+    @PostMapping("/bidProduct")
+    @Operation(summary = "Метод новой ставки")
     public ResponseEntity<ResultMessage> bid(@RequestBody ProductBetRequest request) {
         Long userId = getUserId();
         log.info("Пользователь {} повышает ставку на товар:{}. Цена: {}", userId, request.getProductId(), request.getPrice());
@@ -66,7 +74,7 @@ public class AccountController extends AbstractController {
         return ResponseEntity.ok(resultMessage);
     }
 
-    @GetMapping("/getByUser")
+    @GetMapping("/getProductsByUser")
     private ResponseEntity<List<Product>> getByUser() {
         return ResponseEntity.ok(productService.getByUserId(getUserId()));
     }

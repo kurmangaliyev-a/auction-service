@@ -1,6 +1,7 @@
 package kz.kurmangaliev.auction.db.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,13 +17,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Builder
+@Schema(description = "Список всех категорий товаров")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @Schema(description = "Ид категории")
     private Long id;
 
-
+    @Schema(description = "Название категории")
     @Column(name = "name")
     private String name;
 

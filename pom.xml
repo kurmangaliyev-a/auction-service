@@ -6,23 +6,23 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.8</version>
+        <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>kz.kurmangaliev.auction</groupId>
     <artifactId>auction-service</artifactId>
-    <version>0.9.3-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
     <properties>
         <start-class>kz.kurmangaliev.auction.Application</start-class>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
-    <dependencies><!--
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -62,7 +62,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.7.8</version>
+                <version>2.5.6</version>
                 <configuration>
                     <mainClass>kz.kurmangaliev.auction.Application</mainClass>
                     <layout>JAR</layout>
